@@ -277,8 +277,6 @@ const {width} = useWindowSize();
           style={{ width: '100%',height: "65vh" , marginLeft: "20%",}}
           spacing={3}
         >
-                 
-
         <Grid item lg={8} md={12} xl={9} xs={12}>
             <LatestOrders
               data={datas}
@@ -286,10 +284,7 @@ const {width} = useWindowSize();
             />
           </Grid>
           </Grid>
-          
-
       </div>
-
       <Footer/>
     </React.Fragment>
   );
