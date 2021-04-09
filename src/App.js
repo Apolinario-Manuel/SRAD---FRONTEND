@@ -18,26 +18,26 @@ const App = () => {
   const location = useLocation();
 
   const pages = [
-  {
+    /*{
       pageLink: '/',
       view: Welcome,
       displayName: 'Home',
       showInNavbar: true,
     },
     
-    {
-      pageLink: '/welcome',
-      view: Welcome,
-      displayName: 'Home',
-      showInNavbar: true,
-    },
     
     {
       pageLink: '/about',
       view: About,
       displayName: 'Sobre',
       showInNavbar: true,
-    },
+    }*/
+    {
+      pageLink: '/',
+      view: Welcome,
+      displayName: 'Home',
+      showInNavbar: true,
+    },,
     {
       pageLink: '/blog',
       view: Blog,

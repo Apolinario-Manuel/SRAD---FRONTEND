@@ -45,6 +45,7 @@ function Welcome() {
     const [recovered, setRecovered] = useState(0)
     const [recoveredDataGraph, setRecoveredDataGraph] = useState(0)
     const [monthsCase, setMonthsCase] = useState([])
+    const [updated, setUpdated] = useState("")
     const [actualProvince, setActualProvince] = useState({
       nome:"Luanda",
       id:11
@@ -123,6 +124,10 @@ useEffect(() => {
         setDoencas(response.data);
     });
 
+    api.get('/ultimoupdate').then((response) => {
+      setUpdated(response.data.data);
+  });
+    
     newArrayMonths.push(['x', 'Activo', 'Morto', 'Recuperado'])
     
     arrMonths = [
@@ -238,7 +243,7 @@ const {width} = useWindowSize();
             }
             
             <h1>Angola</h1>
-            <span>Última actualização 20 de abril de 2021</span> 
+            <span>Última actualização {updated}</span> 
             <Suspense fallback={<div />}>
                 <select name='id_doenca' className="selectSwitch" onChange={(e)=> setSelectedDoenca(e.target.value)}>
                     {
