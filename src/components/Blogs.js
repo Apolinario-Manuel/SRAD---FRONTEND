@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom'; 
 import styled from 'styled-components';
 import api from "../services/api";
-
+import './Blog.css'
 
 
 const Div = styled.div `
-    width: 100%;
+    width: 90%;
+    margin: auto;
+    text-align: justify !important;
     .actions{
         display: flex;
         justify-content: space-between;
@@ -29,7 +31,7 @@ const Div = styled.div `
         opacity: 0.7;
     }
     .container{
-        width: 90%;
+        width: 100%;
         margin-left: 5%;
         display: flex;
         grid-template-columns: auto;
@@ -132,7 +134,7 @@ const Div = styled.div `
     }
 `;
 
-export default class Main extends Component {
+export default class Blogs extends Component {
 
     state = {
         noticias: [],
@@ -146,7 +148,7 @@ export default class Main extends Component {
     }
 
     info = async (page = 1) =>{
-        const res = await api.get(`/noticia/${page}`);
+        const res = await api.get(`/informacoes`);
 
         const {docs , ...noticiasInfo} = res.data;
 
@@ -182,27 +184,31 @@ export default class Main extends Component {
         const {page, noticiasInfo} = this.state;
 
         return (
-            <Div>
-                <div>
-                    <div class="h1hhh">
-                        <p class="h1hh">Início/ Notícias</p>
+            <>
+            <div className="main-banner sbe">
+                    <div className="container px-md-0">
+                        <h1 ><span>Blog de saúde</span></h1>
                     </div>
+                </div>
+            <Div>
+                
+                <div>
 
                     <div class="container">
                         <div class="container-child">
                             {this.state.noticias && this.state.noticias.map((item, index) => (
                                 <div key={index} className="child">
                                     <div class='grid-item'>
-                                        <img src={`http://localhost/backend/u/${item.img}`}/>
+                                        <img src={`http://localhost/srad/uploads/${item.img}`}/>
                                     </div>
                                     <div class="grid-item1">
                                         <article class="article">
                                             <strong>{item.title}</strong>
                                             <p class="pr" dangerouslySetInnerHTML={{__html: item.description}}></p>
-                                            <p class="pr"> Publicado em: {item.created_at.split(" ")[0]} </p>
+                                            <p class="pr"> Publicado em: {/*item.created_at.split(" ")[0]*/} </p>
                                             <Link class="a" to={
                                                 {
-                                                    pathname:'/Espaco',
+                                                    pathname:'/Ler',
                                                     state:{
                                                         route: '/noticia/show',
                                                         id: item.id
@@ -224,6 +230,7 @@ export default class Main extends Component {
                     
                 </div>
             </Div>
+            </>
         );
     }
 }
